@@ -1,11 +1,8 @@
 server:
   port: 8082
-
+  servlet:
+    context-path: /auth
 spring:
-  security:
-    user:
-      name: user
-      password: user
   jpa:
     # Driver Class = org.h2.Driver
     # JDBC URL = jdbc:h2:mem:testdb
