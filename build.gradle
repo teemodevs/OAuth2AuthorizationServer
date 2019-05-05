@@ -19,9 +19,23 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 
+	/** Lombok **/
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
 	/** Spring Security **/
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 
 	// https://mvnrepository.com/artifact/org.springframework.security.oauth.boot/spring-security-oauth2-autoconfigure
 	compile group: 'org.springframework.security.oauth.boot', name: 'spring-security-oauth2-autoconfigure', version: '2.1.4.RELEASE'
+
+
+	/** Spring Data **/
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	// https://mvnrepository.com/artifact/com.h2database/h2
+	compile group: 'com.h2database', name: 'h2', version: '1.4.199'
+
+	// https://mvnrepository.com/artifact/org.springframework.data/spring-data-rest-core
+	compile group: 'org.springframework.data', name: 'spring-data-rest-core', version: '3.1.6.RELEASE'
 }

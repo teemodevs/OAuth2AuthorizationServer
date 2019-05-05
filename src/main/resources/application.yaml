@@ -1,8 +1,19 @@
 server:
   port: 8082
 
-security:
-  oauth2:
-    client:
-      client-id: foo
-      client-secret: bar
+spring:
+  security:
+    user:
+      name: user
+      password: user
+  jpa:
+    # Driver Class = org.h2.Driver
+    # JDBC URL = jdbc:h2:mem:testdb
+    database-platform: H2
+    show-sql: TRUE
+    hibernate:
+      ddl-auto: 'create-drop'
+
+spring.h2.console:
+  enabled: true
+  path: /h2-console
