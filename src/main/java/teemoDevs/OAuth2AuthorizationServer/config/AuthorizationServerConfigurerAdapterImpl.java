@@ -41,7 +41,8 @@ public class AuthorizationServerConfigurerAdapterImpl extends AuthorizationServe
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.authenticationManager(authenticationManager);
+        endpoints
+                .authenticationManager(authenticationManager);
     }
 
     @Override
