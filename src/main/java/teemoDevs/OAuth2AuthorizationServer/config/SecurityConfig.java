@@ -26,16 +26,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.requestMatchers()
-                .antMatchers("/login", "/oauth/authorize")
-                .and()
+        http
+                .requestMatchers()
+                .antMatchers("/login", "/oauth/authorize", "/signup")
+
+            .and()
                 .authorizeRequests()
                 .anyRequest()
                 .authenticated()
-                .and()
+
+            .and()
                 .formLogin()
-                .permitAll()
-                .and().csrf().disable();
+                    .loginPage("/login")
+                    .permitAll()
+
+            .and()
+                .csrf()
+                    .disable();
     }
 
     @Override
@@ -46,7 +53,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth
                 .inMemoryAuthentication()
                 .withUser("user").password(passwordEncoder().encode("123")).roles("USER");
-
     }
 
     @Override

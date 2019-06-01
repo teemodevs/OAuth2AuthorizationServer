@@ -9,7 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Controller
-public class LogoutController {
+public class EndpointController {
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
     @GetMapping("/logout")
     public void exit(HttpServletRequest request, HttpServletResponse response) {
         // token can be revoked here if needed
