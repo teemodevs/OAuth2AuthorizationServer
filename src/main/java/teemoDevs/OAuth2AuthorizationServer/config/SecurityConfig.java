@@ -16,6 +16,7 @@ import org.springframework.security.oauth2.provider.approval.TokenStoreUserAppro
 import org.springframework.security.oauth2.provider.request.DefaultOAuth2RequestFactory;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
+import teemoDevs.OAuth2AuthorizationServer.auth.service.CustomUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
@@ -24,16 +25,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private ClientDetailsService clientDetailsService;
 
+    @Autowired
+    private CustomUserDetailsService customUserDetailsService;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .requestMatchers()
-                .antMatchers("/login", "/oauth/authorize", "/signup")
+                .antMatchers("/login", "/oauth/authorize")
 
             .and()
                 .authorizeRequests()
-                .anyRequest()
-                .authenticated()
+                .antMatchers("/signup").permitAll()
+                .anyRequest().authenticated()
 
             .and()
                 .formLogin()
@@ -48,11 +52,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
+                .userDetailsService(customUserDetailsService)
+                .passwordEncoder(passwordEncoder());
+                /*.inMemoryAuthentication()
+                .withUser("admin").password(passwordEncoder().encode("123")).roles("USER", "ADMIN").authorities("USER", "ADMIN");*/
+        /*auth
                 .inMemoryAuthentication()
-                .withUser("admin").password(passwordEncoder().encode("123")).roles("USER", "ADMIN").authorities("USER", "ADMIN");
-        auth
-                .inMemoryAuthentication()
-                .withUser("user").password(passwordEncoder().encode("123")).roles("USER");
+                .withUser("user").password(passwordEncoder().encode("123")).roles("USER");*/
     }
 
     @Override
