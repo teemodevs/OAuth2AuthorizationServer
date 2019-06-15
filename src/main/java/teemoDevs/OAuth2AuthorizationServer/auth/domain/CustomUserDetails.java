@@ -16,6 +16,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * 커스터마이징 UserDetails
+ * {@link UserDetails} 인터페이스를 구현하여 추가적인 정보가 필요한 경우 넣어줄 수 있도록 함
+ * 1. Authorization Server에 로그인 시 {@link UserDetails} 역할
+ * 2. 로그인 성공 시 Client에 유저 정보(username, authorities)를 전송하는 DTO
+ * 3. 회원가입 시 Resource Server에게 유저 정보(username, email)를 전송하는 DTO
+ * */
 @Entity
 @Getter
 @Setter
@@ -35,7 +42,7 @@ public class CustomUserDetails implements UserDetails {
 
     @NotNull
     @Email
-    @Column(unique = true)
+    @Transient
     private String email;
 
     @NotNull

@@ -6,6 +6,9 @@ import teemoDevs.OAuth2AuthorizationServer.auth.domain.CustomUserDetails;
 
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * {@link CustomUserDetails}를 다루기 위한 Repository
+ * */
 @Repository
 @Transactional
 public interface UserRepository extends JpaRepository<CustomUserDetails, Long> {

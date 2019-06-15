@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service;
 import teemoDevs.OAuth2AuthorizationServer.auth.domain.CustomUserDetails;
 import teemoDevs.OAuth2AuthorizationServer.auth.repository.UserRepository;
 
+/**
+ * {@link CustomUserDetails}를 다루기 위한 Repository
+ * 1. 회원가입 시 {@link CustomUserDetails} 정보를 저장
+ * 2. 로그인 시 {@link CustomUserDetails} 정보를 검색
+ * */
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 

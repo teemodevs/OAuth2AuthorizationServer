@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.approval.ApprovalStore;
@@ -25,8 +27,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private ClientDetailsService clientDetailsService;
 
+    /**
+     * {@link CustomUserDetailsService}
+     * */
     @Autowired
-    private CustomUserDetailsService customUserDetailsService;
+    private UserDetailsService userDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -49,10 +54,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .disable();
     }
 
+    /**
+     * {@link Authentication} 객체를 생성하기 위해 필요한 요소들을 세팅
+     * userDetailsService() :
+     * */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                .userDetailsService(customUserDetailsService)
+                .userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder());
                 /*.inMemoryAuthentication()
                 .withUser("admin").password(passwordEncoder().encode("123")).roles("USER", "ADMIN").authorities("USER", "ADMIN");*/
