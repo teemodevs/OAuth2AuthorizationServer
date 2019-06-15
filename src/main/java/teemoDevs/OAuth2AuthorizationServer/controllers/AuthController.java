@@ -44,8 +44,9 @@ public class AuthController {
 
         // 권한 설정
         List<String> authorities = new ArrayList<>();
-        //authorities.add("ADMIN");
+        authorities.add("ADMIN");
         authorities.add("USER");
+        authorities.add("CUSTOM");
         customUserDetails.setAuthorities(authorities);
 
         // Activate
