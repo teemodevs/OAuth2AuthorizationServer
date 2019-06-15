@@ -12,6 +12,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.approval.UserApprovalHandler;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 
+// https://projects.spring.io/spring-security-oauth/docs/oauth2.html
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfigurerAdapterImpl extends AuthorizationServerConfigurerAdapter {
@@ -28,6 +29,9 @@ public class AuthorizationServerConfigurerAdapterImpl extends AuthorizationServe
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
+    /**
+     * @param clients a configurer that defines the client details service. Client details can be initialized, or you can just refer to an existing store.
+     * */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
@@ -39,12 +43,18 @@ public class AuthorizationServerConfigurerAdapterImpl extends AuthorizationServe
                 .scopes("read");
     }
 
+    /**
+     * @param endpoints defines the authorization and token endpoints and the token services.
+     * */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints
                 .authenticationManager(authenticationManager);
     }
 
+    /**
+     * @param oauthServer defines the security constraints on the token endpoint.
+     */
     @Override
     public void configure(AuthorizationServerSecurityConfigurer oauthServer)throws Exception {
         oauthServer
