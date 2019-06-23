@@ -1,2 +1,9 @@
 spring:
   profiles: production
+
+# Custom Property
+security:
+  oauth2:
+    resource:
+      email-duplicated-check-uri: http://oauth2resourceserver.herokuapp.com:8081/resource/user/email/checkDuplicated
+      email-add-uri: http://oauth2resourceserver.herokuapp.com:8081/resource/user/email/add
