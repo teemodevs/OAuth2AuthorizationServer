@@ -34,10 +34,10 @@
                             </div>
                         </div>
                     </div>
-                    <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="col-md-3">
+                    <div th:if="${#fields.hasErrors('username')}" class="col-md-3">
                         <div class="form-control-feedback">
                                 <span class="text-danger align-middle">
-                                    <i class="fa fa-close"> Name Error </i>
+                                    <i class="fa fa-close" th:errors="*{username}"></i>
                                 </span>
                         </div>
                     </div>
@@ -55,10 +55,10 @@
                             </div>
                         </div>
                     </div>
-                    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="col-md-3">
+                    <div th:if="${#fields.hasErrors('email')}" class="col-md-3">
                         <div class="form-control-feedback">
                                 <span class="text-danger align-middle">
-                                    <i class="fa fa-close"> Email Error </i>
+                                    <i class="fa fa-close" th:errors="*{email}"></i>
                                 </span>
                         </div>
                     </div>
@@ -76,10 +76,10 @@
                             </div>
                         </div>
                     </div>
-                    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="col-md-3">
+                    <div th:if="${#fields.hasErrors('password')}" class="col-md-3">
                         <div class="form-control-feedback">
                                 <span class="text-danger align-middle">
-                                    <i class="fa fa-close"> Password Error </i>
+                                    <i class="fa fa-close" th:errors="*{password}"> Password Error </i>
                                 </span>
                         </div>
                     </div>

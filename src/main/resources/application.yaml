@@ -16,5 +16,12 @@ spring:
 
   h2:
     console:
-      enabled: true
+      enabled: TRUE
       path: /h2-console
+
+# Custom Property
+security:
+  oauth2:
+    resource:
+      email-duplicated-check-uri: http://localhost:8081/resource/user/email/checkDuplicated
+      email-add-uri: http://localhost:8081/resource/user/email/add
