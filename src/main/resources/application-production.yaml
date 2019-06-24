@@ -1,9 +1,14 @@
+server:
+  port: 8080
+
 spring:
   profiles: production
 
-# Custom Property
+# Custom Properties
 security:
   oauth2:
+    client:
+      teemoDevs-redirect-uri: http://mainwebapplication.herokuapp.com/client/login/oauth2/code/teemo
     resource:
-      email-duplicated-check-uri: http://oauth2resourceserver.herokuapp.com:8081/resource/user/email/checkDuplicated
-      email-add-uri: http://oauth2resourceserver.herokuapp.com:8081/resource/user/email/add
+      email-duplicated-check-uri: http://oauth2resourceserver.herokuapp.com/resource/user/email/checkDuplicated
+      email-add-uri: http://oauth2resourceserver.herokuapp.com/resource/user/email/add

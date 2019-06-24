@@ -1,6 +1,7 @@
 package teemoDevs.OAuth2AuthorizationServer.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,6 +17,9 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfigurerAdapterImpl extends AuthorizationServerConfigurerAdapter {
+
+    @Value("${security.oauth2.client.teemoDevs-redirect-uri}")
+    private String teemoDevsRedirectUri;
 
     @Autowired
     private TokenStore tokenStore;
@@ -39,7 +43,7 @@ public class AuthorizationServerConfigurerAdapterImpl extends AuthorizationServe
                 .secret(passwordEncoder.encode("bar"))
                 .authorizedGrantTypes("authorization_code", "password", "implicit", "refresh_token")
                 .autoApprove(true)
-                .redirectUris("http://localhost:8080/client/login/oauth2/code/teemo")
+                .redirectUris(teemoDevsRedirectUri)
                 .scopes("read");
     }
 

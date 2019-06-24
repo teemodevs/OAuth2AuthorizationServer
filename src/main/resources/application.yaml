@@ -19,9 +19,11 @@ spring:
       enabled: TRUE
       path: /h2-console
 
-# Custom Property
+# Custom Properties
 security:
   oauth2:
+    client:
+      teemoDevs-redirect-uri: http://localhost:8080/client/login/oauth2/code/teemo
     resource:
       email-duplicated-check-uri: http://localhost:8081/resource/user/email/checkDuplicated
       email-add-uri: http://localhost:8081/resource/user/email/add
